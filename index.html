@@ -1,0 +1,141 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title> 吴妙琳生日快乐哦！</title>
+    <!-- <link rel="icon" href="./images/favicon.ico"> -->
+    <link href="./css/style.css" type="text/css" rel="stylesheet">
+    <script src="./js/jquery.js"></script>
+    <script src="./js/garden.js"></script>
+    <script src="./js/functions.js"></script>
+    <style>
+        audio {
+            display: none;
+        }
+
+        .iconimg {
+
+            position: absolute;
+            top: 50px;
+            right: 50px;
+            width: 60px;
+            height: 60px;
+            z-index: 999;
+        }
+
+        @keyframes rotate {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="mainDiv">
+        <div id="content">
+            <div id="code">
+                <span class="comments">今天是一个特殊的日子</span><br /><br />
+                <span class="comments">在你生日到来之际，我将快乐的音符，作为礼物送给你</span><br /><br />
+                <span class="comments">愿这个特殊的一天充满欢笑、美好的回忆和满满的祝福</span><br /><br />
+                <span class="comments">如奔赴古城道路上阳光一般的人</span><br /><br />
+                <span class="comments">愿这一年比过去的任何一年都更美好，更加充实</span><br /><br />
+                <span class="comments">由起点到夜晚，由山野到书房，一切问题的答案都很简单</span><br /><br />
+                <span class="comments">祝你在新的大学里找到你的方向，并在追逐梦想的过程中实现自己的目标</span><br />
+                <br><br>
+                <span class="comments"><b class="bb">生日快乐! 吴妙琳妹妹</b></span>
+            </div>
+            <div class="iconimg">
+                <img src="./images/icon-music.png" alt="">
+            </div>
+            <audio controls id="audis">
+                <source src="./mp3/birthday.mp3" type="audio/mp3">
+            </audio>
+            <div id="loveHeart">
+                <canvas id="garden"></canvas>
+                <div id="words">
+                    <div id="messages">
+                        <img src="./images/zsr.png">
+                    </div>
+                    <div id="loveu">
+                        <img src="./images/sr.png">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        // const audio = new Audio('./mp3/birthday.mp3');
+        // setTimeout(() => {
+        //     audio.play();
+        // }, 5000);
+
+        // document.addEventListener('click', () => {
+        //     const audio = document.getElementById('audis');
+        //     audio.play().catch(error => {
+        //         // 处理无法播放的错误
+        //         console.error("播放失败:", error);
+        //     });
+        // });
+
+        let iconimg = document.querySelector('.iconimg');
+
+        iconimg.addEventListener('click', () => {
+            const audio = document.getElementById('audis');
+
+
+            // 查找audio是否播放
+            if (audio.paused) {
+                console.log('音频当前处于暂停状态');
+                audio.play();
+                //  animation: rotate 5s linear infinite;
+                iconimg.style.animation = 'rotate 5s linear infinite';
+            } else {
+                console.log('音频正在播放');
+                audio.pause();
+                iconimg.style.animation = 'none';
+            }
+        });
+
+        var offsetX = $("#loveHeart").width() / 2;
+        var offsetY = $("#loveHeart").height() / 2 - 55;
+        var together = new Date();
+        together.setHours(8);
+        together.setMinutes(0);
+        together.setSeconds(0);
+        together.setMilliseconds(0);
+
+        if (!document.createElement('canvas').getContext) {
+            var msg = document.createElement("div");
+            msg.id = "errorMsg";
+            msg.innerHTML = "您的浏览器已经过时!请使用非IE浏览器进行预览";
+            document.body.appendChild(msg);
+            $("#code").css("display", "none")
+            $("#copyright").css("position", "absolute");
+            $("#copyright").css("bottom", "10px");
+            document.execCommand("stop");
+        } else {
+            setTimeout(function () {
+                startHeartAnimation();
+            }, 5000);
+
+            timeElapse(together);
+            setInterval(function () {
+                timeElapse(together);
+            }, 500);
+
+            adjustCodePosition();
+            $("#code").typewriter();
+        }
+    </script>
+    </div>
+
+
+</body>
+
+</html>
